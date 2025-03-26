@@ -1,7 +1,7 @@
 import { posts } from "@/data/placeholder-data";
 import Post from "@/ui/components/posts/Post";
 
-export default async function PostDetailPage({ params }: { params: { id: string } }) {
+export default async function PostDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const post = posts.find((post) => post.id === id);
 
@@ -9,7 +9,5 @@ export default async function PostDetailPage({ params }: { params: { id: string 
     return <h1>Post not found</h1>;
   }
 
-  return (
-    <Post {...post}/>
-  );
+  return <Post {...post} />;
 }
