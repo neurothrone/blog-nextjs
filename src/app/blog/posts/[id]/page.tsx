@@ -1,5 +1,5 @@
-import { posts } from "@/data/placeholder-data";
 import Post from "@/ui/components/posts/Post";
+import posts from "@/data/placeholder-data";
 
 export default async function PostDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
