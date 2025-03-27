@@ -22,8 +22,12 @@ export async function getPosts() {
   }
 
   try {
-    // language=SQL format=false
-    const data = client.sql`SELECT * FROM posts LIMIT 5`;
+    const data = client.sql`
+        SELECT
+            *
+        FROM posts
+        LIMIT 5
+    `;
     return data.then(
       (res) => {
         console.log(res.rows);
@@ -54,8 +58,10 @@ export async function createPost({ id, author, title, content, date }: {
   }
 
   try {
-    // language=SQL format=false
-    const data = client.sql`INSERT INTO posts (id, author, title, content, date) VALUES (${id}, ${author}, ${title}, ${content}, ${date})`;
+    const data = client.sql`
+        INSERT INTO posts (id, author, title, content, date)
+        VALUES (${id}, ${author}, ${title}, ${content}, ${date})
+    `;
     return data.then(
       (res) => {
         console.log(res);
