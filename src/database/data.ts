@@ -1,4 +1,5 @@
 import { createClient, VercelClient } from "@vercel/postgres";
+import { unstable_noStore as noStore } from 'next/cache';
 
 let client: VercelClient | null = null;
 
@@ -21,12 +22,14 @@ export async function getPosts() {
     }
   }
 
+  await new Promise(resolve => setTimeout(resolve, 500));
+
   try {
+    noStore();
     const data = client.sql`
         SELECT
             *
         FROM posts
-        LIMIT 5
     `;
     return data.then(
       (res) => {
